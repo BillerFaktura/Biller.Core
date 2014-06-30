@@ -76,8 +76,8 @@ namespace Biller.Core.Customers
                 if (!String.IsNullOrEmpty(MainAddress.CompanyName) && String.IsNullOrEmpty(MainAddress.Surname))
                     return MainAddress.CompanyName;
 
-                if (!String.IsNullOrEmpty(MainAddress.Forname))
-                    return MainAddress.Forname;
+                if (!String.IsNullOrEmpty(MainAddress.Forename))
+                    return MainAddress.Forename;
                 if (!String.IsNullOrEmpty(MainAddress.Addition))
                     return MainAddress.Addition;
 
