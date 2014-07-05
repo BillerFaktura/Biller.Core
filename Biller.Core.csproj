@@ -117,6 +117,7 @@
     <Compile Include="Interfaces\IStorageable.cs" />
     <Compile Include="Interfaces\IXMLStorageable.cs" />
     <Compile Include="Interfaces\PreviewDocumentParser.cs" />
+    <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\CompanyInformation.cs" />
     <Compile Include="Models\DocumentExportModel.cs" />
     <Compile Include="Models\DummyExport.cs" />
@@ -124,9 +125,14 @@
     <Compile Include="Models\DocumentFolderModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\TaxClassMoneyModel.cs" />
+    <Compile Include="Models\UpdateModel.cs" />
+    <Compile Include="Models\UpdateRequireModel.cs" />
     <Compile Include="Performance\Stopwatch.cs" />
     <Compile Include="Samples\Units.cs" />
     <Compile Include="Models\CompanySettings.cs" />
+    <Compile Include="Update\FileDownloader.cs" />
+    <Compile Include="Update\Progress.cs" />
+    <Compile Include="Update\UpdateManager.cs" />
     <Compile Include="Utils\Address.cs" />
     <Compile Include="Utils\Contact.cs" />
     <Compile Include="Customers\Customer.cs" />
