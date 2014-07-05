@@ -11,6 +11,7 @@ namespace Biller.Core.Models
     {
         public string Title { get; set; }
         public string Description { get; set; }
+        public string GuID { get; set; }
         public string UpdateURL { get; set; }
         public double Version { get; set; }
         public List<UpdateRequireModel> RequiredApps { get; set; }
