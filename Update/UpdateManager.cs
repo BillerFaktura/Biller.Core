@@ -82,7 +82,7 @@ namespace Biller.Core.Update
             foreach (var app in RegisteredApps)
             {
                 var updateApp = (from updates in CollectedApps where updates.GuID == app.GuID select updates).FirstOrDefault();
-                if (String.IsNullOrEmpty(updateApp.GuID))
+                if (updateApp == null)
                     continue;
 
                 if (updateApp.Version > app.Version)
