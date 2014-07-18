@@ -11,7 +11,7 @@ namespace Biller.Core.Update
     /// </summary>
     public class Progress
     {
-        public long Current { get; set; }
-        public long Total { get; set; }
+        public double Current { get; set; }
+        public double Total { get; set; }
     }
 }

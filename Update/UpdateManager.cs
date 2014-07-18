@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NLog;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Biller.Core.Update
 {
@@ -23,6 +25,7 @@ namespace Biller.Core.Update
             UpdateSources = new List<string>();
             RegisteredApps = new List<Models.AppModel>();
             CollectedApps = new List<Models.UpdateModel>();
+            CleanUpUpdateFiles();
         }
 
         public void Register(Models.AppModel app)
@@ -142,9 +145,42 @@ namespace Biller.Core.Update
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
-        public void Update(Models.UpdateModel app)
+        public void Update(Models.UpdateModel app, Biller.Controls.Notification.UpdateNotification notification)
         {
+            DownloadUpdateAsync(app, finished =>
+            {
+                if (finished)
+                    ApplyUpdate(app);
+            }, progressPercent =>
+            {
+                notification.Progress = progressPercent;
+            });
+        }
 
+        private void DownloadUpdateAsync(Models.UpdateModel app,  Action<bool> finishedCallback, Action<double> progressPercentageCallback)
+        {
+            FileDownloader fileDownloader = new FileDownloader(app.UpdateURL);
+
+            fileDownloader.DownloadAsync(downloadedData =>
+            {
+                System.IO.File.WriteAllBytes(app.Title+"."+app.Version+ ".update.exe", downloadedData);
+                finishedCallback(true);
+            },
+            (progress) => 
+            {
+                progressPercentageCallback((100 * (progress.Current / progress.Total)));
+            });
+        }
+
+        private void ApplyUpdate(Models.UpdateModel app)
+        {
+            Process.Start(app.Title + "." + app.Version + ".update.exe");
+        }
+
+        private void CleanUpUpdateFiles()
+        {
+            foreach (var file in Directory.GetFiles((Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), ""), "*.update.exe"))
+                System.IO.File.Delete(file);
         }
     }
 }
