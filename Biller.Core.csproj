@@ -68,8 +68,9 @@
     <Reference Include="MigraDoc.Rendering-WPF">
       <HintPath>..\Assemblies\MigraDoc\MigraDoc.Rendering-WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
@@ -117,6 +118,7 @@
     <Compile Include="Interfaces\IStorageable.cs" />
     <Compile Include="Interfaces\IXMLStorageable.cs" />
     <Compile Include="Interfaces\PreviewDocumentParser.cs" />
+    <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\CompanyInformation.cs" />
     <Compile Include="Models\DocumentExportModel.cs" />
     <Compile Include="Models\DummyExport.cs" />
@@ -124,9 +126,14 @@
     <Compile Include="Models\DocumentFolderModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\TaxClassMoneyModel.cs" />
+    <Compile Include="Models\UpdateModel.cs" />
+    <Compile Include="Models\UpdateRequireModel.cs" />
     <Compile Include="Performance\Stopwatch.cs" />
     <Compile Include="Samples\Units.cs" />
     <Compile Include="Models\CompanySettings.cs" />
+    <Compile Include="Update\FileDownloader.cs" />
+    <Compile Include="Update\Progress.cs" />
+    <Compile Include="Update\UpdateManager.cs" />
     <Compile Include="Utils\Address.cs" />
     <Compile Include="Utils\Contact.cs" />
     <Compile Include="Customers\Customer.cs" />
@@ -145,7 +152,12 @@
     <Compile Include="Utils\TaxClass.cs" />
     <Compile Include="Utils\Unit.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Biller.Controls\Biller.Controls.csproj">
+      <Project>{7f38e058-9c78-418f-8acf-1cdd3a196edd}</Project>
+      <Name>Biller.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
