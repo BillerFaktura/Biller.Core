@@ -18,5 +18,13 @@ namespace Biller.Core.Utils
         {
             return this.FirstOrDefault(x => x.Key == key);
         }
+
+        protected override void InsertItem(int index, Models.KeyValueModel item)
+        {
+            if (GetByKey(item.Key) == null)
+                base.InsertItem(index, item);
+            else
+                base.SetItem(IndexOf(item), item);
+        }
     }
 }

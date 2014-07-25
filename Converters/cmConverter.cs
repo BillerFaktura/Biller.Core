@@ -31,15 +31,13 @@ namespace Biller.Core.Converters
         {
             try
             {
-                var val = (double)value;
-                return cmConverter.cmUnit.ValueToString(val);
+                return cmConverter.cmUnit.ValueToString((double)value);
             }
             catch (Exception e)
             {
                 logger.ErrorException("Error converting " + value.ToString(), e);
             }
             return value;
-            
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -52,7 +50,7 @@ namespace Biller.Core.Converters
             {
                 logger.ErrorException("Error converting back from " + value.ToString(), e);
             }
-            return 0;
+            return value;
         }
         #endregion
     }

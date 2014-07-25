@@ -35,7 +35,7 @@ namespace Biller.Core.Utils
                     Amount = Convert.ToDouble(t);
                     SetValue(value);
                 }
-                catch (Exception e)
+                catch
                 {
                     Amount = 0;
                     SetValue(0);

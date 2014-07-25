@@ -88,6 +88,18 @@ namespace Biller.Core.Interfaces
         /// </summary>
         /// <returns>Returns a list of <see cref="TaxClass"/>es.</returns>
         Task<IEnumerable<Utils.TaxClass>> TaxClasses();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        void SaveOrUpdateSettings(Utils.KeyValueStore settings);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<Utils.KeyValueStore> GetSettings();
         #endregion
 
         #region Article

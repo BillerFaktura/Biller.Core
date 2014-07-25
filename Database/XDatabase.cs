@@ -344,6 +344,29 @@ namespace Biller.Core.Database
             catch (Exception e) { logger.FatalException("Error writing article-unit to " + DatabasePath + CurrentCompany.CompanyID + "\\Others.xml", e); }
         }
 
+        public void SaveOrUpdateSettings(Utils.KeyValueStore settings)
+        {
+            if (!SettingsDB.Elements("Settings").Any())
+                SettingsDB.Add(new XElement("Settings"));
+            SettingsDB.Element("Settings").Value = Newtonsoft.Json.JsonConvert.SerializeObject(settings);
+
+            try { File.WriteAllText(DatabasePath + CurrentCompany.CompanyID + "\\Others.xml", SettingsDB.ToString()); }
+            catch (Exception e) { logger.FatalException("Error saving changes to " + DatabasePath + CurrentCompany.CompanyID + "\\Others.xml" + "TaxClass was changed.", e); }
+        }
+
+        public async Task<Utils.KeyValueStore> GetSettings()
+        {
+            return await Task<Utils.KeyValueStore>.Run(() => getSettings());
+        }
+
+        private Utils.KeyValueStore getSettings()
+        {
+            if (!SettingsDB.Elements("Settings").Any())
+                return new Utils.KeyValueStore();
+            XElement item = SettingsDB.Element("Settings");
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Utils.KeyValueStore>(item.Value);
+        }
+
         #region Articles
 
         private List<string> registeredArticleIDs = new List<string>();
@@ -1095,6 +1118,7 @@ namespace Biller.Core.Database
             {
                 using (StreamReader reader = File.OpenText(DatabasePath + CurrentCompany.CompanyID + "\\" + StorageableItem.XElementName + "s.xml"))
                 {
+                    //Can Throw an exception if the file is empty
                     var db = XElement.Load(reader);
                     if (!db.AncestorsAndSelf(StorageableItem.XElementName + "s").Any())
                         return false;

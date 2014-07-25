@@ -149,7 +149,6 @@ namespace Biller.Core.Document
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        private System.Xml.Linq.XName xName;
         #endregion
     }
 }

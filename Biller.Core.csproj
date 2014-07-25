@@ -106,7 +106,7 @@
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\PercentageConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
-    <Compile Include="Database\JSONDatabase.cs" />
+    <Compile Include="Database\AppSettings.cs" />
     <Compile Include="Database\XDatabase.cs" />
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\PreviewDocument.cs" />
