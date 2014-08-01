@@ -17,7 +17,7 @@ namespace Biller.Core.Database
         public void Load()
         {
             if (!File.Exists("appsettings.json"))
-                using (StreamWriter writer = File.CreateText("appsettings"))
+                using (StreamWriter writer = File.CreateText("appsettings.json"))
                     writer.Write(JsonConvert.SerializeObject(this));
             using (StreamReader reader = File.OpenText("appsettings.json"))
             {
@@ -29,7 +29,7 @@ namespace Biller.Core.Database
 
         public void Save()
         {
-            using (StreamWriter writer = File.CreateText("appsettings"))
+            using (StreamWriter writer = File.CreateText("appsettings.json"))
                 writer.Write(JsonConvert.SerializeObject(this));
         }
 
@@ -49,7 +49,7 @@ namespace Biller.Core.Database
         private string databaseOptions;
         public string DatabaseOptions
         {
-            get { return DatabaseOptions; }
+            get { return databaseOptions; }
 
             set
             {
