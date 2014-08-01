@@ -12,9 +12,7 @@ namespace Biller.Core.Database
     public class AppSettings : INotifyPropertyChanged
     {
         public AppSettings()
-        {
-
-        }
+        { }
 
         public void Load()
         {

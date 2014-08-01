@@ -120,6 +120,7 @@
     <Compile Include="Interfaces\PreviewDocumentParser.cs" />
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\CompanyInformation.cs" />
+    <Compile Include="Models\DatabaseUIModel.cs" />
     <Compile Include="Models\DocumentExportModel.cs" />
     <Compile Include="Models\DummyExport.cs" />
     <Compile Include="Models\KeyValueModel.cs" />
