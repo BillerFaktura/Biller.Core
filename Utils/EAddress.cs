@@ -36,7 +36,7 @@ namespace Biller.Core.Utils
 
             Salutation = source.Element("Salutation").Value;
             Title = source.Element("Title").Value;
-            Forname = source.Element("Forname").Value;
+            Forename = source.Element("Forename").Value;
             Surname = source.Element("Surname").Value;
             CompanyName = source.Element("CompanyName").Value;
             Street = source.Element("Street").Value;

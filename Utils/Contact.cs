@@ -149,7 +149,7 @@ namespace Biller.Core.Utils
 
         public string IDFieldName
         {
-            get { throw new NotImplementedException(); }
+            get { return "ID"; }
         }
 
         public Interfaces.IXMLStorageable GetNewInstance()

@@ -23,6 +23,14 @@ namespace Biller.Core.Interfaces
         /// <remarks>Returns false in a "first run" case but sets <see cref="IsFirstLoad"/> to "true" in this case.</remarks>
         /// <returns>Returns true if the attempt to connect was successfull.</returns>
         Task<bool> Connect();
+
+        /// <summary>
+        /// A unique identifier
+        /// </summary>
+        string GuID { get; }
+
+        string DatabaseTitle { get; }
+        string DatabaseDescription { get; }
         #endregion
         
         #region Company
@@ -88,6 +96,18 @@ namespace Biller.Core.Interfaces
         /// </summary>
         /// <returns>Returns a list of <see cref="TaxClass"/>es.</returns>
         Task<IEnumerable<Utils.TaxClass>> TaxClasses();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        void SaveOrUpdateSettings(Utils.KeyValueStore settings);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<Utils.KeyValueStore> GetSettings();
         #endregion
 
         #region Article
@@ -254,5 +274,23 @@ namespace Biller.Core.Interfaces
 
         Task<bool> RegisterStorageableItem(IXMLStorageable StorageableItem);
         #endregion
+
+        /// <summary>
+        /// If a database can synchronize data, the database instance will has to return updated items since the last update request. This should be done via HashCodes
+        /// </summary>
+        bool CanSync { get; }
+
+        /// <summary>
+        /// If <see cref="CanSync"/> is true, a controller will call this methode to update data
+        /// </summary>
+        /// <returns></returns>
+        Task<List<IStorageable>> GetUpdatedItems();
+
+        /// <summary>
+        /// Compares if the given item is equal to the one stored in the database. Returns true if the items are equal.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        Task<bool> CompareItem(IStorageable source);
     }
 }

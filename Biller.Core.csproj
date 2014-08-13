@@ -53,14 +53,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsvHelper">
-      <HintPath>..\packages\CsvHelper.2.3.0\lib\net40-client\CsvHelper.dll</HintPath>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CsvHelper.2.7.0\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="Fluent">
       <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\packages\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="MigraDoc.DocumentObjectModel-WPF">
       <HintPath>..\Assemblies\MigraDoc\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
@@ -68,11 +66,13 @@
     <Reference Include="MigraDoc.Rendering-WPF">
       <HintPath>..\Assemblies\MigraDoc\MigraDoc.Rendering-WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp-WPF, Version=1.32.2608.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -105,8 +105,7 @@
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\PercentageConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
-    <Compile Include="Database\JSONDatabase.cs" />
-    <Compile Include="Database\XDatabase.cs" />
+    <Compile Include="Database\AppSettings.cs" />
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\PreviewDocument.cs" />
     <Compile Include="Import\csv.cs" />
@@ -117,16 +116,23 @@
     <Compile Include="Interfaces\IStorageable.cs" />
     <Compile Include="Interfaces\IXMLStorageable.cs" />
     <Compile Include="Interfaces\PreviewDocumentParser.cs" />
+    <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\CompanyInformation.cs" />
+    <Compile Include="Models\DatabaseUIModel.cs" />
     <Compile Include="Models\DocumentExportModel.cs" />
     <Compile Include="Models\DummyExport.cs" />
     <Compile Include="Models\KeyValueModel.cs" />
     <Compile Include="Models\DocumentFolderModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\TaxClassMoneyModel.cs" />
+    <Compile Include="Models\UpdateModel.cs" />
+    <Compile Include="Models\UpdateRequireModel.cs" />
     <Compile Include="Performance\Stopwatch.cs" />
     <Compile Include="Samples\Units.cs" />
     <Compile Include="Models\CompanySettings.cs" />
+    <Compile Include="Update\FileDownloader.cs" />
+    <Compile Include="Update\Progress.cs" />
+    <Compile Include="Update\UpdateManager.cs" />
     <Compile Include="Utils\Address.cs" />
     <Compile Include="Utils\Contact.cs" />
     <Compile Include="Customers\Customer.cs" />
@@ -145,7 +151,12 @@
     <Compile Include="Utils\TaxClass.cs" />
     <Compile Include="Utils\Unit.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Biller.Controls\Biller.Controls.csproj">
+      <Project>{7f38e058-9c78-418f-8acf-1cdd3a196edd}</Project>
+      <Name>Biller.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

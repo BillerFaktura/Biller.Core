@@ -15,7 +15,7 @@ namespace Biller.Core.Utils
         public Address()
         {
             //Insert empty values to avoid null exceptions
-            Salutation = ""; Title = ""; Forname = ""; Surname = "";
+            Salutation = ""; Title = ""; Forename = ""; Surname = "";
             CompanyName = ""; Street = ""; HouseNumber = ""; Zip = "";
             City = ""; Country = ""; Addition = "";
         }
@@ -32,9 +32,9 @@ namespace Biller.Core.Utils
             set { SetValue(value); }
         }
 
-        public string Forname
+        public string Forename
         {
-            get { return GetValue(() => Forname); }
+            get { return GetValue(() => Forename); }
             set { SetValue(value); }
         }
 
@@ -89,7 +89,7 @@ namespace Biller.Core.Utils
         public virtual System.Xml.Linq.XElement GetXElement()
         {
             var objectnode = new XElement(XElementName);
-            objectnode.Add(new XElement("Salutation", Salutation), new XElement("Title", Title), new XElement("Forname", Forname),
+            objectnode.Add(new XElement("Salutation", Salutation), new XElement("Title", Title), new XElement("Forename", Forename),
                 new XElement("Surname", Surname), new XElement("CompanyName", CompanyName), new XElement("Street", Street),
                 new XElement("HouseNumber", HouseNumber), new XElement("Zip", Zip), new XElement("City", City),
                 new XElement("Country", Country), new XElement("Addition", Addition));
@@ -103,7 +103,7 @@ namespace Biller.Core.Utils
 
             Salutation = source.Element("Salutation").Value;
             Title = source.Element("Title").Value;
-            Forname = source.Element("Forname").Value;
+            Forename = source.Element("Forename").Value;
             Surname = source.Element("Surname").Value;
             CompanyName = source.Element("CompanyName").Value;
             Street = source.Element("Street").Value;
@@ -123,7 +123,7 @@ namespace Biller.Core.Utils
         {
             get
             {
-                var names = (((Salutation + " " + Title + " ").Trim() + " " + Forname).Trim() + " " + Surname).Trim();
+                var names = (((Salutation + " " + Title + " ").Trim() + " " + Forename).Trim() + " " + Surname).Trim();
                 if (!String.IsNullOrEmpty(names))
                     names += ", ";
                 
@@ -160,7 +160,7 @@ namespace Biller.Core.Utils
                 {
                     output.Add(CompanyName);
 
-                    var names = (((Salutation + " " + Title).Trim() + " " + Forname).Trim() + " " + Surname).Trim();
+                    var names = (((Salutation + " " + Title).Trim() + " " + Forename).Trim() + " " + Surname).Trim();
                     if (!String.IsNullOrEmpty(names))
                         output.Add(names);
                 }
@@ -169,7 +169,7 @@ namespace Biller.Core.Utils
                     if (!String.IsNullOrEmpty(Salutation))
                         output.Add(Salutation);
 
-                    var names = ((Title + " " + Forname.Trim()).Trim() + " " + Surname).Trim();
+                    var names = ((Title + " " + Forename.Trim()).Trim() + " " + Surname).Trim();
                     if (!String.IsNullOrEmpty(names))
                         output.Add(names);
                 }
@@ -200,7 +200,7 @@ namespace Biller.Core.Utils
 
         public virtual string IDFieldName
         {
-            get { throw new NotImplementedException(); }
+            get { return "ID"; }
         }
 
         public virtual Interfaces.IXMLStorageable GetNewInstance()

@@ -99,7 +99,7 @@ namespace Biller.Core.Utils
             value = value.Replace(ShortName, "");
             double parsedValue = 0;
             double.TryParse(value, NumberStyles.Number, nfi, out parsedValue);
-            return parsedValue;
+                return parsedValue;
         }
 
         /// <summary>
