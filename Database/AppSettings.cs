@@ -16,9 +16,18 @@ namespace Biller.Core.Database
 
         public void Load()
         {
-            if (!File.Exists("appsettings.json"))
-                using (StreamWriter writer = File.CreateText("appsettings.json"))
-                    writer.Write(JsonConvert.SerializeObject(this));
+            try
+            {
+                if (!File.Exists("appsettings.json"))
+                    using (StreamWriter writer = File.CreateText("appsettings.json"))
+                        writer.Write(JsonConvert.SerializeObject(this));
+            }
+            catch(Exception e)
+            {
+                
+            }
+            
+
             using (StreamReader reader = File.OpenText("appsettings.json"))
             {
                 var settings = JsonConvert.DeserializeObject<AppSettings>(reader.ReadToEnd());
