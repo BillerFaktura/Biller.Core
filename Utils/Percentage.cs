@@ -64,12 +64,12 @@ namespace Biller.Core.Utils
 
         public string ID
         {
-            get { throw new NotImplementedException(); }
+            get { return ""; }
         }
 
         public string IDFieldName
         {
-            get { throw new NotImplementedException(); }
+            get { return ""; }
         }
 
         public Interfaces.IXMLStorageable GetNewInstance()
