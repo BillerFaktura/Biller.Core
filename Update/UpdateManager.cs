@@ -37,7 +37,9 @@ namespace Biller.Core.Update
 
         public void CheckForUpdates()
         {
+#if !DEBUG
             GetSources();
+#endif
         }
 
         public event EventHandler CheckForUpdatesCompleted;

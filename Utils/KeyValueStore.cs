@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace Biller.Core.Utils
 {
-    public class KeyValueStore : DynamicObject
+    public class KeyValueStore : DynamicObject, INotifyPropertyChanged 
     {
         /// <summary>
         /// Returns null, if a member does not exist
