@@ -21,7 +21,7 @@ namespace Biller.Core.Customers
     /// </code>
     /// </example>
     /// </summary>
-    public class PreviewCustomer : DynamicObject
+    public class PreviewCustomer : DynamicObject, INotifyPropertyChanged
     {
         /// <summary>
         /// Constructor for <see cref="PreviewCustomer"/>. Initializes all internal objects and defines empty strings for any predefined property.
