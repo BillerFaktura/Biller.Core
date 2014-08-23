@@ -95,7 +95,7 @@ namespace Biller.Core.Update
                     }
                     catch(Exception e)
                     {
-                        logger.ErrorException("Failed getting update URL", e);
+                        logger.Error("Failed getting update URL", e);
                         requestFailedAction(null);
                     }
                     
@@ -138,7 +138,7 @@ namespace Biller.Core.Update
                     }
                     catch(Exception e)
                     {
-                        logger.ErrorException("Error while comparing version for app " + app.Title, e);
+                        logger.Error("Error while comparing version for app " + app.Title, e);
                         NonUpdateableApps.Add(updateApp);
                     }
                 }
@@ -165,7 +165,8 @@ namespace Biller.Core.Update
 
             fileDownloader.DownloadAsync(downloadedData =>
             {
-                System.IO.File.WriteAllBytes(app.Title+"."+app.Version+ ".update.exe", downloadedData);
+                string filename = Path.GetFileName(new Uri(app.UpdateURL).AbsolutePath); 
+                System.IO.File.WriteAllBytes(filename, downloadedData);
                 finishedCallback(true);
             },
             (progress) => 
@@ -176,7 +177,7 @@ namespace Biller.Core.Update
 
         private void ApplyUpdate(Models.UpdateModel app)
         {
-            Process.Start(app.Title + "." + app.Version + ".update.exe");
+            Process.Start(Path.GetFileName(new Uri(app.UpdateURL).AbsolutePath));
         }
 
         private void CleanUpUpdateFiles()
