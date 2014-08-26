@@ -54,5 +54,89 @@ namespace Biller.Core.Utils
         {
             return new EMoney(0);
         }
+
+        #region "Operators"
+        public static EMoney operator +(EMoney money1, EMoney money2)
+        {
+            if (money1 != null && money2 != null)
+            {
+                if (money1.Currency != money2.Currency)
+                    throw new Exception("Unterschiedliche Währungen");
+                return new EMoney(money1.Amount + money2.Amount, money1.IsGross, money1.Currency);
+            }
+            return new EMoney(0);
+        }
+        public static EMoney operator +(EMoney money1, double amount2)
+        {
+            return new EMoney(money1.Amount + amount2, money1.IsGross, money1.Currency);
+        }
+
+        public static EMoney operator -(EMoney money1, EMoney money2)
+        {
+            if (money1.Currency != money2.Currency)
+                throw new Exception("Unterschiedliche Währungen");
+            return new EMoney(money1.Amount - money2.Amount, money1.IsGross, money1.Currency);
+        }
+        public static EMoney operator -(EMoney money1, double amount2)
+        {
+            return new EMoney(money1.Amount - amount2, money1.IsGross, money1.Currency);
+        }
+
+        public static EMoney operator *(EMoney money1, EMoney money2)
+        {
+            if (money1.Currency != money2.Currency)
+                throw new Exception("Unterschiedliche Währungen");
+            return new EMoney(money1.Amount * money2.Amount, money1.IsGross, money1.Currency);
+        }
+
+        public static EMoney operator *(EMoney money1, double amount2)
+        {
+            return new EMoney(money1.Amount * amount2, money1.IsGross, money1.Currency);
+        }
+
+        public static EMoney operator /(EMoney money1, EMoney money2)
+        {
+            if (money1.Currency != money2.Currency)
+                throw new Exception("Unterschiedliche Währungen");
+            return new EMoney(money1.Amount / money2.Amount, money1.IsGross, money1.Currency);
+        }
+
+        public static EMoney operator /(EMoney money1, double amount2)
+        {
+            return new EMoney(money1.Amount / amount2, money1.IsGross, money1.Currency);
+        }
+
+        public static bool operator ==(EMoney money1, EMoney money2)
+        {
+            if (money1.Amount == money2.Amount && money1.Currency == money2.Currency)
+                return true;
+            return false;
+        }
+
+        public static bool operator !=(EMoney money1, EMoney money2)
+        {
+            return !(money1 == money2);
+        }
+
+        public static bool operator <(EMoney money1, EMoney money2)
+        {
+            return money1.Amount < money2.Amount;
+        }
+
+        public static bool operator <(EMoney money1, double money2)
+        {
+            return money1.Amount < money2;
+        }
+
+        public static bool operator >(EMoney money1, EMoney money2)
+        {
+            return money1.Amount > money2.Amount;
+        }
+
+        public static bool operator >(EMoney money1, double money2)
+        {
+            return money1.Amount > money2;
+        }
+        #endregion
     }
 }
