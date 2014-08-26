@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Biller.Core.Document
 {
-    public class PreviewDocument : DynamicObject
+    public class PreviewDocument : DynamicObject, INotifyPropertyChanged
     {
         public PreviewDocument(string OrderType)
         {

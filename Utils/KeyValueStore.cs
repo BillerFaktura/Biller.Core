@@ -11,26 +11,11 @@ using Newtonsoft.Json;
 
 namespace Biller.Core.Utils
 {
-    public class KeyValueStore : DynamicObject//ObservableCollection<Models.KeyValueModel>
+    public class KeyValueStore : DynamicObject, INotifyPropertyChanged 
     {
-        ///// <summary>
-        ///// Returns an existing <see cref="Models.KeyValueModel"/> from the collection or null if there is no item with the given key.
-        ///// </summary>
-        ///// <param name="key">A unique key inside the database</param>
-        ///// <returns></returns>
-        //public Models.KeyValueModel GetByKey(string key)
-        //{
-        //    return this.FirstOrDefault(x => x.Key == key);
-        //}
-
-        //protected override void InsertItem(int index, Models.KeyValueModel item)
-        //{
-        //    if (GetByKey(item.Key) == null)
-        //        base.InsertItem(index, item);
-        //    else
-        //        base.SetItem(IndexOf(item), item);
-        //}
-
+        /// <summary>
+        /// Returns null, if a member does not exist
+        /// </summary>
         public KeyValueStore()
         {
             propertyValueStorage = new Dictionary<string, object>();
@@ -38,9 +23,16 @@ namespace Biller.Core.Utils
 
         #region PropertyHelper
 
+        /// <summary>
+        /// </summary>
+        /// <param name="binder"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            return propertyValueStorage.TryGetValue(binder.Name, out result);
+            // We don't care for return type
+            propertyValueStorage.TryGetValue(binder.Name, out result);
+            return true;
         }
 
         public override bool TrySetMember(SetMemberBinder binder, object value)

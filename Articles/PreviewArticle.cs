@@ -21,7 +21,7 @@ namespace Biller.Core.Articles
     /// </code>
     /// </example>
     /// </summary>
-    public class PreviewArticle : DynamicObject
+    public class PreviewArticle : DynamicObject, INotifyPropertyChanged
     {
         /// <summary>
         /// Constructor for <see cref="PreviewArticle"/>. Initializes all internal objects and sets the predefinied properties to an empty string or creates a new instance of a propertie's object.
