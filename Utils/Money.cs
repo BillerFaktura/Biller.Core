@@ -152,20 +152,6 @@ namespace Biller.Core.Utils
             return new Money(money1.Amount / amount2, money1.Currency);
         }
 
-        public static bool operator ==(Money money1, Money money2)
-        {
-            if (money1.Amount == money2.Amount && money1.Currency == money2.Currency)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool operator !=(Money money1, Money money2)
-        {
-            return !(money1 == money2);
-        }
-
         public static bool operator <(Money money1, Money money2)
         {
             return money1.Amount < money2.Amount;
