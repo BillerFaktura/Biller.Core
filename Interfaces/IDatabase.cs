@@ -292,5 +292,7 @@ namespace Biller.Core.Interfaces
         /// <param name="source"></param>
         /// <returns></returns>
         Task<bool> CompareItem(IStorageable source);
+
+        bool IsWorking { get; }
     }
 }
